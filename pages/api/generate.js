@@ -31,7 +31,7 @@ export default async function (req, res) {
       model: "text-davinci-003",
       prompt: generatePrompt(animal),
       temperature: 0.6,
-      max_tokens: 1000,
+      max_tokens: 500,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
@@ -53,5 +53,10 @@ export default async function (req, res) {
 function generatePrompt(animal) {
   const capitalizedAnimal =
     animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Write a 5-point lesson plan that will teach students about: ${capitalizedAnimal}`;
+  return `Write a 5-point lesson plan for the following topic: ${capitalizedAnimal}. Write it in the following format:
+  1---
+  2---
+  3---
+  4---
+  5---`;
 }

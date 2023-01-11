@@ -45,7 +45,11 @@ export default function Home() {
         <div className={styles.left}>
           <img src="/education.svg" className={styles.icon} />
           <h3>Education Planner</h3>
-          <form onSubmit={onSubmit}>
+          <form
+            onSubmit={(e) => {
+              onSubmit(e);
+            }}
+          >
             <input
               type="text"
               name="animal"
@@ -54,7 +58,11 @@ export default function Home() {
               autoComplete="off"
               onChange={(e) => setAnimalInput(e.target.value)}
             />
-            <input type="submit" value="Generate 5-step plan" />
+            <input
+              type="submit"
+              value="Generate 5-step plan"
+              onClick={() => setResult("Loading...")}
+            />
           </form>
         </div>
         <div className={styles.result}>{result}</div>
