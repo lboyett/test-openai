@@ -19,12 +19,15 @@ export default function Home() {
 
       const data = await response.json();
       if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status}`);
+        throw (
+          data.error ||
+          new Error(`Request failed with status ${response.status}`)
+        );
       }
 
       setResult(data.result);
       setAnimalInput("");
-    } catch(error) {
+    } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
@@ -32,25 +35,28 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className={styles.outerDiv}>
       <Head>
-        <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <title>Education Plans</title>
+        <link rel="icon" href="/education.svg" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
-          />
-          <input type="submit" value="Generate names" />
-        </form>
+        <div className={styles.left}>
+          <img src="/education.svg" className={styles.icon} />
+          <h3>Education Planner</h3>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              name="animal"
+              placeholder="Enter topic"
+              value={animalInput}
+              autoComplete="off"
+              onChange={(e) => setAnimalInput(e.target.value)}
+            />
+            <input type="submit" value="Generate 5-step plan" />
+          </form>
+        </div>
         <div className={styles.result}>{result}</div>
       </main>
     </div>
